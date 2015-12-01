@@ -21,13 +21,13 @@ public class Joueur {
     private final int joueurNo;
     private final Table table;
     private Trame trameReceived;
-    private Trame trameSent;
+    public Trame trameSent;
     private InetAddress IPAddress;
     private ScheduledExecutorService timer;
     private DatagramSocket socket;
-    private int seq;
-    private int ack;
-    private boolean multicast = false;
+    public int seq;
+    public int ack;
+    public boolean multicast = false;
     
     public Joueur(int joueurNo, Table table){
         this.joueurNo = joueurNo;
@@ -96,7 +96,13 @@ public class Joueur {
                     if(table.joueurTour == this.joueurNo){
                         //TODO Attente jeu
                     }
-            }
+                break;
+            case Trame.MESSAGE_BRASSEUR:
+                //toDO
+                break;
+        }
+
+
         }   
     
     public void jouer(String sourceId){
@@ -175,7 +181,7 @@ public class Joueur {
         ack = (++ack)%2;
     }
     
-    private void send(){
+    public void send(){
         if(trameSent != null){
             if(multicast){
                 for(InetAddress i : table.joueurs){

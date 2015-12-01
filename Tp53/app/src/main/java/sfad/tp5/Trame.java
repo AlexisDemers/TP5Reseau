@@ -5,6 +5,7 @@ public class Trame {
     public static final int MESSAGE_CARTE_PASSEE = 2;
     public static final int MESSAGE_CARTE_JOUEE = 3;
     public static final int MESSAGE_NEXT_JOUEUR = 4;
+    public static final int MESSAGE_BRASSEUR = 5;
     private int seq;
     private int type= -1;
     private int data;

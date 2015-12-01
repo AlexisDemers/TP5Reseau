@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Table {
     public static final int MAX_POINTS = 99;
-    private Joueur joueurLocal;
+    public Joueur joueurLocal;
     private Paquet paquet;
     public Joueur joueurBrasseur;
     public int joueurTour;
@@ -19,7 +19,6 @@ public class Table {
     
     public Table(){
         paquet = new Paquet();
-        joueurLocal = new Joueur(0, this/*TODO toFix*/);
     }
     
     public Carte pigerCarte(){
@@ -70,4 +69,6 @@ public class Table {
     public void inverserJeu(){
         this.jeuInverse = !jeuInverse;
     }
+
+
 }
