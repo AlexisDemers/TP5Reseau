@@ -1,13 +1,12 @@
 package tp5;
 
 public class Trame {
-    public static final int MESSAGE_DATA = 1;
-    public static final int MESSAGE_RESPONSE = 2;
-    public static final int TYPE_JEU = 2;
+    public static final int MESSAGE_CONFIRMATION = 1;
+    public static final int MESSAGE_CARTE_PASSEE = 2;
+    public static final int MESSAGE_CARTE_JOUEE = 3;
+    public static final int MESSAGE_NEXT_JOUEUR = 4;
     private int seq;
     private int type= -1;
-    private int source;
-    private int destinataire;
     private int data;
     
     public Trame(String trameString){
@@ -15,17 +14,13 @@ public class Trame {
         if(trameString.length()>=3){
             seq = Integer.parseInt(""+trameString.charAt(0));
             type = Integer.parseInt(""+trameString.charAt(1));
-            destinataire = Integer.parseInt(""+trameString.charAt(2));
-            source = Integer.parseInt(""+trameString.charAt(3));
-            data = Integer.parseInt(""+trameString.charAt(4));
+            data = Integer.parseInt(""+trameString.substring(2));
         }
     }
     
-    public Trame(int seq, int type, int destinataire, int source, int data){
+    public Trame(int seq, int type, int data){
         this.seq = seq;
         this.type = type;
-        this.destinataire = destinataire;
-        this.source = source;
         this.data = data;
     }
     
@@ -41,20 +36,12 @@ public class Trame {
         return this.data;
     }
     
-    public int getDestinataire(){
-        return this.destinataire;
-    }
-    
-    public int getSource(){
-        return this.source;
-    }
-    
     public void incSeq(){
         seq = ++seq%2;
     }
     
     @Override
     public String toString(){
-        return seq + "" + type + "" + source + "" + destinataire + "" + data;
+        return seq + "" + type + "" + data;
     }
 }

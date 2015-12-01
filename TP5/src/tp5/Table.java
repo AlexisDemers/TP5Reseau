@@ -7,51 +7,36 @@ import java.net.InetAddress;
 import java.util.List;
 
 public class Table {
-    private static final int SOCKET_PORT = 44444;
     public static final int MAX_POINTS = 99;
     private Joueur joueurLocal;
-    private Trame trameReceived;
-    private Trame trameSent;
-    private InetAddress IPAddress;
-    private DatagramSocket socket;
     private Paquet paquet;
+    public Joueur joueurBrasseur;
     public int joueurTour;
     public List<InetAddress> joueurs;
     public int points;
     public boolean jeuInverse;
+    private int joueursRestant;
     
     public Table(){
         paquet = new Paquet();
         joueurLocal = new Joueur(0, this/*TODO toFix*/);
     }
     
-    public void debuterJeu(){
-        
+    public Carte pigerCarte(){
+        return this.paquet.pigerCarte();
     }
     
-    public void debutEcouteur(){
-         new Thread(()->{
-            while(this.getNbJoueurs() > 1){
-                byte[] receiveData = new byte[3];
-                try{
-                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                    socket.receive(receivePacket);
-                    trameReceived = new Trame(new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength()));
-                    IPAddress = receivePacket.getAddress();
-                    if(trameReceived.getDestinataire() == joueurLocal.getJoueurNo() 
-                            || trameReceived.getDestinataire() == Joueur.JOUEUR_MULTICAST){
-                        joueurLocal.onReceive(trameReceived);
-                    }
-                } catch(IOException e){}
-            }
-            //TODO afficher gagnant
-        }).start();
+    public void debuterJeu(){
+        this.joueurBrasseur = this.joueurLocal;
+        this.joueursRestant = 4; // TODO : set based on number of actual players
+        while(this.joueurBrasseur.getMain().size() < 3){
+            this.joueurBrasseur.jouer(null);
+        }
     }
     
     public void ecouteurBouton(){
         //TODO send source id, if carte image, substring id
-        joueurLocal.jouer();
-        System.out.println("LOL");
+        //joueurLocal.jouer();
     }
     
     public int getJoueurTour(){
@@ -74,8 +59,15 @@ public class Table {
         return joueurs.size();
     }
     
-    public void setJeuInverse(boolean jeuInverse){
-        this.jeuInverse = jeuInverse;
+    public int joueursRestant(){
+        return this.joueursRestant;
     }
     
+    public void joueurPerdu(){
+        this.joueursRestant--;
+    }
+    
+    public void inverserJeu(){
+        this.jeuInverse = !jeuInverse;
+    }
 }
