@@ -113,6 +113,7 @@ public class Joueur {
         switch(this.etat){
             case ASSIS:
                 if(this.isBrasseur()){
+                    System.out.println("in");
                     Carte c = table.pigerCarte();
                     trameSent = new Trame(this.seq, Trame.MESSAGE_CARTE_PASSEE, c.toInt());
                     multicast = false;

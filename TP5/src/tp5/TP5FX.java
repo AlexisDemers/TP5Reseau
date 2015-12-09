@@ -39,7 +39,7 @@ public class TP5FX extends Application implements Initializable{
     @FXML TextField txtJ4;
     @FXML Label lblPoints;
     
-    private Table table;
+    private static Table table;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -59,6 +59,17 @@ public class TP5FX extends Application implements Initializable{
     public void onConnect(){
         Stage stage = (Stage) btnConnect.getScene().getWindow();
         stage.hide();
+        
+        Parent root = null;
+        
+        try{
+            root = FXMLLoader.load(getClass().getResource("TP5FXMLGame.fxml"));
+        } catch(IOException e){}
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
         
         ArrayList<InetAddress> list = new ArrayList<>();
         try{
@@ -81,27 +92,14 @@ public class TP5FX extends Application implements Initializable{
                     table.joueurLocal = new Joueur(i, table);
                 }
             }
-        } catch(UnknownHostException e){}
-        
-        Parent root = null;
-        
-        try{
-            root = FXMLLoader.load(getClass().getResource("TP5FXMLGame.fxml"));
-        } catch(IOException e){}
-        
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        lblPoints = (Label) scene.lookup("#lblPoints");
-        btnPiger = (Button) scene.lookup("#btnPiger");
-        btnFinTour = (Button) scene.lookup("#btnFinTour");
+        } catch(UnknownHostException e){
+        System.out.println("Unknown Host");}
     }
     
     @FXML
     private void pigerCarte(){
-        if(btnPiger.getText().equals("Debuter)")){
+            System.out.println(table == null);
+        if(btnPiger.getText().equals("Debuter")){
             btnPiger.setText("Piger");
             btnPiger.setDisable(true);
             table.joueurBrasseur = table.joueurLocal;

@@ -29,7 +29,8 @@ public class Table {
     
     public void debuterJeu(){
         this.joueurBrasseur = this.joueurLocal;
-        this.joueursRestant = 4; // TODO : set based on number of actual players
+        this.joueurLocal.setState(State.ASSIS);
+        this.joueursRestant = joueurs.size();
         while(this.joueurBrasseur.getMain().size() < 3){
             this.joueurBrasseur.jouer(null);
         }
