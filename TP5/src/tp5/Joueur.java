@@ -14,7 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Joueur {
-    private static final int SOCKET_PORT = 44445;
+    private static final int SOCKET_PORT = 44446;
     public static final int JOUEUR_MULTICAST = 4;
     private List<Carte> main;
     private State etat;
@@ -36,6 +36,9 @@ public class Joueur {
         this.table = table;
         try{
             socket = new DatagramSocket(SOCKET_PORT);
+            Runtime.getRuntime().addShutdownHook(new Thread(){public void run(){
+                socket.close();
+            }});
         }catch(SocketException e){
             e.printStackTrace();
         }
