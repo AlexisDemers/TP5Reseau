@@ -28,12 +28,9 @@ public class Table {
     }
     
     public void debuterJeu(){
-        this.joueurBrasseur = this.joueurLocal;
-        this.joueurLocal.setState(State.ASSIS);
         this.joueursRestant = joueurs.size();
-        while(this.joueurBrasseur.getMain().size() < 3){
-            this.joueurBrasseur.jouer(null);
-        }
+        vue.btnPiger.setText("Piger");
+        vue.btnPiger.setDisable(true);
     }
     
     public void ecouteurBouton(){

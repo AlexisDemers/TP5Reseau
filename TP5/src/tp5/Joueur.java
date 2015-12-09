@@ -48,6 +48,7 @@ public class Joueur {
     }
     
     public void onReceive(){
+                    System.out.println("in");
         switch(trameReceived.getType()){
             case Trame.MESSAGE_CARTE_PASSEE:
                 main.add(new Carte(trameReceived.getData()));
@@ -102,7 +103,7 @@ public class Joueur {
                     }
                 break;
             case Trame.MESSAGE_BRASSEUR:
-                //toDO
+                table.debuterJeu();
                 break;
         }
 
@@ -113,7 +114,6 @@ public class Joueur {
         switch(this.etat){
             case ASSIS:
                 if(this.isBrasseur()){
-                    System.out.println("in");
                     Carte c = table.pigerCarte();
                     trameSent = new Trame(this.seq, Trame.MESSAGE_CARTE_PASSEE, c.toInt());
                     multicast = false;
@@ -146,6 +146,16 @@ public class Joueur {
                         this.perdre();
                     }
                 }
+        }
+    }
+    
+    public void debutJeu(){
+        this.setState(State.ASSIS);
+        trameSent = new Trame(seq, Trame.MESSAGE_BRASSEUR, 1);
+        if(this.isBrasseur()){
+            while(this.getMain().size() < 3){
+                this.jouer(null);
+            }
         }
     }
     

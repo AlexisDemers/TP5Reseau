@@ -94,14 +94,12 @@ public class TP5FX extends Application implements Initializable{
             }
         } catch(UnknownHostException e){
         System.out.println("Unknown Host");}
+        System.out.println(table.joueurs.get(0).getHostAddress());
     }
     
     @FXML
     private void pigerCarte(){
-            System.out.println(table == null);
         if(btnPiger.getText().equals("Debuter")){
-            btnPiger.setText("Piger");
-            btnPiger.setDisable(true);
             table.joueurBrasseur = table.joueurLocal;
             table.debuterJeu();
         }else {
