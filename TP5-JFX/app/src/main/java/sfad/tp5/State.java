@@ -1,4 +1,4 @@
-package tp5;
+package sfad.tp5;
 /**
  *
  * @author 1261669

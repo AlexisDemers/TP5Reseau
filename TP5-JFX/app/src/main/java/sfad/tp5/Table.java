@@ -1,4 +1,4 @@
-package tp5;
+package sfad.tp5;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -16,10 +16,8 @@ public class Table {
     public int points;
     public boolean jeuInverse;
     private int joueursRestant;
-    private TP5FX vue;
     
-    public Table(TP5FX vue){
-        this.vue = vue;
+    public Table(){
         paquet = new Paquet();
     }
     

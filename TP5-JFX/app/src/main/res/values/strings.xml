@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tp5</string>
+    <string name="btnPiger">Piger</string>
+    <string name="btnFinTour">Fin Tour</string>
+    <string name="lblTotal">Total</string>
+    <string name="textTotal">0</string>
+    <string name="lblIp">Ip : </string>
+    <string name="sendIp">Send</string>
+</resources>

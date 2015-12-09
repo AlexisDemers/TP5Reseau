@@ -85,14 +85,16 @@ public class Client extends Application implements Initializable{
     private void receiveData(){
         new Thread(()->{
             while(true){
-                byte[] receiveData = new byte[5];
+                byte[] receiveData = new byte[BYTES_TO_READ + 2];
                 try{
                     System.out.println("Waiting...");
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     socket.receive(receivePacket);
                     trameReceived = new Trame(new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength()));
                     IPAddress = receivePacket.getAddress();
-                    onReceive();
+                    if(trameReceived.getData().length > 0){
+                        onReceive();
+                    }
                 } catch(IOException e){}
                  
             }

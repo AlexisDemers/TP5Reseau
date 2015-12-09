@@ -1,4 +1,4 @@
-package tp5;
+package sfad.tp5;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
