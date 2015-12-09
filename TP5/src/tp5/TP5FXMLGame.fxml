@@ -10,8 +10,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="715.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="tp5.TP5FX">
   <children>
-    <Button fx:id="btnPiger" layoutX="295.0" layoutY="400.0" mnemonicParsing="false" text="Debuter" />
-    <Button fx:id="btnFinTour" disable="true" layoutX="359.0" layoutY="400.0" mnemonicParsing="false" text="Fin tour" />
+    <Button fx:id="btnPiger" layoutX="295.0" layoutY="400.0" mnemonicParsing="false" onAction="#pigerCarte" text="Debuter" />
+    <Button fx:id="btnFinTour" disable="true" layoutX="359.0" layoutY="400.0" mnemonicParsing="false" onAction="#finTour" text="Fin tour" />
     <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="174.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="386.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="280.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />

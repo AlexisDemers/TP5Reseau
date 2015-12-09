@@ -8,8 +8,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0000999999975" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="tp5.TP5FX">
   <children>
-    <TextField fx:id="txtJ1" layoutX="100.0" layoutY="46.0" prefWidth="200.0" />
-    <TextField fx:id="txtJ2" layoutX="100.0" layoutY="98.0" prefWidth="200.0" />
+    <TextField fx:id="txtJ1" layoutX="100.0" layoutY="46.0" prefWidth="200.0" text="192.168.1.4" />
+    <TextField fx:id="txtJ2" layoutX="100.0" layoutY="98.0" prefWidth="200.0" text="192.168.1.7" />
     <TextField fx:id="txtJ3" layoutX="100.0" layoutY="150.0" prefWidth="200.0" />
     <TextField fx:id="txtJ4" layoutX="100.0" layoutY="207.0" prefWidth="200.0" />
     <Button fx:id="btnConnect" layoutX="100.0" layoutY="256.0" mnemonicParsing="false" onAction="#onConnect" text="Débuter" />

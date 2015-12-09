@@ -100,16 +100,13 @@ public class TP5FX extends Application implements Initializable{
     }
     
     @FXML
-    private void debuterPartie(){
-        table.joueurBrasseur = table.joueurLocal;
-        
-        table.debuterJeu();
-    }
-    
-    @FXML
     private void pigerCarte(){
-        table.joueurBrasseur = table.joueurLocal;
-        table.debuterJeu();
+        if(btnPiger.getText().equals("Debuter)")){
+            table.joueurBrasseur = table.joueurLocal;
+            table.debuterJeu();
+        }else {
+            
+        }
     }
     
     @FXML
