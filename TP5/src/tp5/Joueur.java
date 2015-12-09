@@ -14,7 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Joueur {
-    private static final int SOCKET_PORT = 44444;
+    private static final int SOCKET_PORT = 44445;
     public static final int JOUEUR_MULTICAST = 4;
     private List<Carte> main;
     private State etat;
@@ -50,6 +50,7 @@ public class Joueur {
                 main.add(new Carte(trameReceived.getData()));
                 switch(this.etat){
                     case ASSIS:
+                        System.out.println(trameReceived.getType());
                         if(main.size() == 3){
                             etat = State.JEU;
                         }

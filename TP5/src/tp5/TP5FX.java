@@ -102,6 +102,8 @@ public class TP5FX extends Application implements Initializable{
     @FXML
     private void pigerCarte(){
         if(btnPiger.getText().equals("Debuter)")){
+            btnPiger.setText("Piger");
+            btnPiger.setDisable(true);
             table.joueurBrasseur = table.joueurLocal;
             table.debuterJeu();
         }else {
