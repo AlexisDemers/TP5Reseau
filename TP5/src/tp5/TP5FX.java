@@ -68,6 +68,10 @@ public class TP5FX extends Application implements Initializable{
         
         Scene scene = new Scene(root);
         
+        btnPiger = (Button) scene.lookup("#btnPiger");
+        btnFinTour = (Button) scene.lookup("#btnFinTour");
+        lblPoints = (Label) scene.lookup("#lblPoints");
+        
         stage.setScene(scene);
         stage.show();
         
@@ -94,7 +98,6 @@ public class TP5FX extends Application implements Initializable{
             }
         } catch(UnknownHostException e){
         System.out.println("Unknown Host");}
-        System.out.println(table.joueurs.get(0).getHostAddress());
     }
     
     @FXML
