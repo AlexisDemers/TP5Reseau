@@ -31,6 +31,12 @@ public class Table {
         this.joueursRestant = joueurs.size();
         vue.btnPiger.setText("Piger");
         vue.btnPiger.setDisable(true);
+        if(this.joueurLocal.equals(joueurBrasseur)){
+            this.brasserPaquet();
+            while(this.joueurLocal.getMain().size() < 3){
+                this.joueurLocal.jouer(null);
+            }
+        }
     }
     
     public void ecouteurBouton(){

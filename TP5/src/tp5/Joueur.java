@@ -54,10 +54,10 @@ public class Joueur {
                 main.add(new Carte(trameReceived.getData()));
                 switch(this.etat){
                     case ASSIS:
-                        System.out.println(trameReceived.getType());
                         if(main.size() == 3){
                             etat = State.JEU;
                         }
+                        System.out.println(main.size());
                         break;
                     case JEU:
                         if(table.getNbJoueurs() == 1){
@@ -116,6 +116,7 @@ public class Joueur {
                 if(this.isBrasseur()){
                     Carte c = table.pigerCarte();
                     trameSent = new Trame(this.seq, Trame.MESSAGE_CARTE_PASSEE, c.toInt());
+                        System.out.println(trameSent.toString());
                     multicast = false;
                     //startTimer();
                     this.send();
@@ -208,6 +209,7 @@ public class Joueur {
                 }
                 
             }else {
+                System.out.println("sending");
                 byte[] message = trameSent.toString().getBytes();
                 DatagramPacket p = new DatagramPacket(message, message.length, table.joueurs.get(table.getJoueurTour()), SOCKET_PORT);
                 try{
