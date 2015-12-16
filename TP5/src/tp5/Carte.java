@@ -42,6 +42,6 @@ public class Carte {
     }
     
     public int toInt(){
-        return this.sorte*Carte.NOMBRE_DE_NOMBRES + this.nombre;
+        return (this.sorte*Carte.NOMBRE_DE_NOMBRES + this.nombre);
     }
 }

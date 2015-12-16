@@ -130,6 +130,6 @@ public class Table {
     }
     
     public void updatePointage(){
-        vue.lblPoints.setText(""+points);
+        Platform.runLater(()->vue.lblPoints.setText(""+points));
     }
 }
