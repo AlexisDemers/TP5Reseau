@@ -130,19 +130,17 @@ public class TP5FX extends Application implements Initializable{
     private void pigerCarte(){
         if(btnPiger.getText().equals("Debuter")){
             table.joueurLocal.setState(State.ASSIS);
-            table.joueurBrasseur = table.joueurLocal;
+            table.joueurBrasseur = table.joueurLocal.getJoueurNo();
             table.joueurLocal.debutJeu();
         }  
     }
     
     @FXML
     private void finTour(){
-        table.joueurBrasseur = table.joueurLocal;
-        table.debuterJeu();
     }
     
     public void jouerCarte(int carteId){
-     System.out.println("JOERUERERER ! " + carteId + " : " + table.joueurLocal.getMain().get(carteId));   
+     System.out.println("JOERUERERER ! " + carteId + " : " + table.joueurLocal.getMain().get(carteId).toInt());   
     }
     
     /**

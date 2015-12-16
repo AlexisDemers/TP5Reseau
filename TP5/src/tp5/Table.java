@@ -13,7 +13,7 @@ public class Table {
     public static final int MAX_POINTS = 99;
     public Joueur joueurLocal;
     private Paquet paquet;
-    public Joueur joueurBrasseur;
+    public int joueurBrasseur;
     public int joueurTour;
     public List<InetAddress> joueurs;
     public int points;
