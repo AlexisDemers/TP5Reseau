@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -139,8 +140,17 @@ public class TP5FX extends Application implements Initializable{
     private void finTour(){
     }
     
+    public void debutTour(){
+        
+    }
+    
     public void jouerCarte(int carteId){
-     System.out.println("JOERUERERER ! " + carteId + " : " + table.joueurLocal.getMain().get(carteId).toInt());   
+        if(table.joueurTour == table.joueurLocal.getJoueurNo() && !table.tourJoue){
+            table.joueurLocal.jouer(""+carteId);
+            table.tourJoue = true;
+            btnPiger.setDisable(false);
+            btnFinTour.setDisable(false);
+        }
     }
     
     /**

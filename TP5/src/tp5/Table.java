@@ -21,6 +21,7 @@ public class Table {
     public int joueursRestant;
     private TP5FX vue;
     private boolean partieCommencee = false;
+    public boolean tourJoue = false;
     
     public Table(TP5FX vue){
         this.vue = vue;
@@ -90,6 +91,10 @@ public class Table {
     
     public void setJoueurTour(int joueur){
         this.joueurTour = joueur;
+        if(joueur == joueurLocal.getJoueurNo()){
+            this.tourJoue = false;
+            vue.debutTour();
+        }
     }
     
     public void recevoirCarte(Carte c){
