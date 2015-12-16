@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class Joueur {
     private static final int SOCKET_PORT = 44446;
     public static final int JOUEUR_MULTICAST = 4;
-    private List<Carte> main;
+    private ArrayList<Carte> main;
     private State etat;
     private final int joueurNo;
     private final Table table;
@@ -63,15 +63,7 @@ public class Joueur {
                         }
                         break;
                     case JEU:
-                        if(table.getNbJoueurs() == 1){
-                            this.gagner();
-                        } else if (table.getJoueurTour() == this.joueurNo){
-                            if(this.main.isEmpty() || !peutJouer()){
-                                this.perdre();
-                            }
-                        } else {
-                            //set vars ton tour
-                        }
+                        main.add(new Carte(trameReceived.getData()));
                         break;
                    }
                    //this.incAck(table.getJoueurTour());
@@ -87,6 +79,9 @@ public class Joueur {
                 } else if (carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
                     table.inverserJeu();
                 } 
+                
+                table.carteJouee(carteJouee);
+                
                 if(table.points > Table.MAX_POINTS){
                     for(InetAddress i : table.joueurs){
                         if(i.equals(IPAddress)){
@@ -109,7 +104,6 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_BRASSEUR:
                     if(this.etat == State.IDLE && table.joueurBrasseur != this.joueurNo){
-                        System.out.println("ASDHASL:KDFJHAGHAD`FKJ ASD`K JAS`DLK AS`ASD`LFKNAS`FLK J!");
                         table.joueurBrasseur = trameReceived.getData();
                         this.debutJeu();
                     }
@@ -135,7 +129,7 @@ public class Joueur {
                         System.out.println(trameSent.toString());
                     multicast = false;
                     //startTimer();
-                    this.send();
+                    this.send(table.joueurTour);
                     if(this.main.size() == 3){
                         this.etat = State.JEU;
                     }
@@ -143,11 +137,15 @@ public class Joueur {
                 break;
             case JEU:
                 if(sourceId.equals("btnPiger")){
-                    
+                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_CARTE_JOUEE, 0);
+                    multicast = false;
+                    send(table.joueurBrasseur);
                 } else if(sourceId.equals("btnFinTour")){
-                    
+                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_NEXT_JOUEUR, 0);
+                    multicast = true;
+                    send(0);
                 } else {
-                    Carte carteJouee = main.get(Integer.parseInt(sourceId));
+                    Carte carteJouee = main.remove(Integer.parseInt(sourceId));
                     table.points += carteJouee.getValeur();
                     if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
                         table.points = 99;
@@ -157,7 +155,8 @@ public class Joueur {
                     
                     trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_JOUEE, carteJouee.toInt());
                     multicast = true;
-                    this.send();
+                    this.send(0);
+                    table.refreshCartes();
                     if(table.points > Table.MAX_POINTS){
                         this.perdre();
                     }
@@ -170,7 +169,7 @@ public class Joueur {
         if(table.joueurBrasseur == this.joueurNo){
             trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, this.joueurNo);
             multicast = true;
-            send();
+            send(0);
         }
         table.debuterJeu();
     }
@@ -178,7 +177,7 @@ public class Joueur {
     public void setJoueurTour(int joueur){
         trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_JOUEUR_NO, joueur);
         multicast = true;
-        send();
+        send(0);
     }
     
     /*
@@ -218,7 +217,7 @@ public class Joueur {
         ack[joueur] = (++ack[joueur])%2;
     }
     
-    public void send(){
+    public void send(int joueur){
         if(trameSent != null){
             if(multicast){
                 for(InetAddress i : table.joueurs){
@@ -231,7 +230,7 @@ public class Joueur {
                 
             }else {
                 byte[] message = trameSent.toString().getBytes();
-                DatagramPacket p = new DatagramPacket(message, message.length, table.joueurs.get(table.getJoueurTour()), SOCKET_PORT);
+                DatagramPacket p = new DatagramPacket(message, message.length, table.joueurs.get(joueur), SOCKET_PORT);
                 try{
                     socket.send(p);
                 } catch(IOException e){}
@@ -293,7 +292,7 @@ public class Joueur {
         return peutJouer;
     }
     
-    public List<Carte> getMain(){
+    public ArrayList<Carte> getMain(){
         return this.main;
     }
 }

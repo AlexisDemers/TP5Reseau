@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -93,7 +94,6 @@ public class Table {
         this.joueurTour = joueur;
         if(joueur == joueurLocal.getJoueurNo()){
             this.tourJoue = false;
-            vue.debutTour();
         }
     }
     
@@ -112,5 +112,20 @@ public class Table {
                     vue.imgC3.setVisible(true);
                 }
             });
+    }
+    
+    public void refreshCartes(){
+        ArrayList<Carte> main = joueurLocal.getMain();
+        vue.imgC1.setImage(null);
+        vue.imgC2.setImage(null);
+        vue.imgC3.setImage(null);
+        
+        for(Carte c : main){
+            recevoirCarte(c);
+        }
+    }
+    
+    public void carteJouee(Carte c){
+        vue.imgDerniereCarte.setImage(new Image("/tp5/res/c" + c.toInt() + ".png"));
     }
 }

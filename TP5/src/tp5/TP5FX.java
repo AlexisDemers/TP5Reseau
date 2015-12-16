@@ -147,10 +147,15 @@ public class TP5FX extends Application implements Initializable{
     
     @FXML
     private void finTour(){
+        btnFinTour.setDisable(true);
+        btnPiger.setDisable(true);
+        table.joueurLocal.jouer("btnFinTour");
     }
     
-    public void debutTour(){
-        
+    @FXML
+    private void piger(){
+        btnPiger.setDisable(true);
+        table.joueurLocal.jouer("btnPiger");
     }
     
     public void jouerCarte(int carteId){
