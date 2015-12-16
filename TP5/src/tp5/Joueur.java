@@ -132,25 +132,28 @@ public class Joueur {
                 break;
             case JEU:
                 if(sourceId.equals("btnPiger")){
-                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_DEMANDE_CARTE, this.joueurNo);
-                    multicast = false;
-                    send(table.joueurBrasseur);
+                    if(!(table.points > Table.MAX_POINTS)){
+                        trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_DEMANDE_CARTE, this.joueurNo);
+                        multicast = false;
+                        send(table.joueurBrasseur);
+                    }
                 } else if(sourceId.equals("btnFinTour")){
                     trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_NEXT_JOUEUR, 0);
                     multicast = true;   
                     send(0);
-                } else {
-                    Carte carteJouee = main.remove(Integer.parseInt(sourceId));
-                    trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_JOUEE, carteJouee.toInt());
-                    multicast = true;
-                    this.send(0);
-                    table.refreshCartes();
                     if(table.points > Table.MAX_POINTS){
                         this.perdre();
                         trameSent = new Trame(this.seq[table.getJoueurTour()], Trame.MESSAGE_JOUEUR_PERDANT, this.joueurNo);
                         multicast = true;
                         send(0);
                     }
+                } else {
+                    Carte carteJouee = main.remove(Integer.parseInt(sourceId));
+                    trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_JOUEE, carteJouee.toInt());
+                    multicast = true;
+                    this.send(0);
+                    table.refreshCartes();
+                    
                 }
         }
     }
