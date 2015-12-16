@@ -14,7 +14,7 @@ public class Table {
     public int joueurTour;
     public List<InetAddress> joueurs;
     public int points;
-    public boolean jeuInverse;
+    public boolean jeuInverse = false;
     private int joueursRestant;
     private TP5FX vue;
     
@@ -35,10 +35,10 @@ public class Table {
             this.brasserPaquet();
             this.joueurTour = this.joueurLocal.getJoueurNo();
             this.nextJoueur();
-            for(int j = 0; j < 3; j++){
-                for(int i = 0; i < this.getNbJoueurs(); i++){
-                    this.joueurLocal.jouer(null);
-                }
+            for(int j = 0; j < 3*this.getNbJoueurs(); j++){
+                this.joueurLocal.jouer(null);
+                nextJoueur();
+                System.out.println("NOJ: " + this.getJoueurTour());
             }
             
             while(this.joueurLocal.getMain().size() < 3){
@@ -61,9 +61,9 @@ public class Table {
     
     public void nextJoueur(){
         if(!jeuInverse){
-            joueurTour = (joueurTour++)%this.getNbJoueurs();
+            joueurTour = (joueurTour+1)%this.getNbJoueurs();
         } else {
-            joueurTour = joueurTour == 0 ? this.getNbJoueurs() : joueurTour--;
+            joueurTour = joueurTour == 0 ? this.getNbJoueurs() - 1 : joueurTour--;
         }
     }
     

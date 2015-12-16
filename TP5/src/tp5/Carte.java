@@ -24,7 +24,6 @@ public class Carte {
     }
     
     public int getValeur(){
-        System.out.println(this.valeur.getValeur() + " " + this.nombre);
         return valeur.getValeur();
     }
     

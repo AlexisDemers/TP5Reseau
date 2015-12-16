@@ -125,7 +125,6 @@ public class Joueur {
                     multicast = false;
                     //startTimer();
                     this.send();
-                    table.nextJoueur();
                     if(this.main.size() == 3){
                         this.etat = State.JEU;
                     }
