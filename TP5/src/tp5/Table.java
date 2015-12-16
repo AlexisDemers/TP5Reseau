@@ -70,7 +70,7 @@ public class Table {
         if(!jeuInverse){
             joueurTour = (joueurTour+1)%this.getNbJoueurs();
         } else {
-            joueurTour = joueurTour == 0 ? this.getNbJoueurs() - 1 : joueurTour--;
+            joueurTour = joueurTour < 0 ? this.getNbJoueurs() - 1 : joueurTour - 1;
         }
     }
     
