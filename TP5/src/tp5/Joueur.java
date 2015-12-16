@@ -51,7 +51,6 @@ public class Joueur {
     }
     
     public void onReceive(){
-                    System.out.println(trameReceived.toString());
         switch(trameReceived.getType()){
             case Trame.MESSAGE_CARTE_PASSEE:
                 main.add(new Carte(trameReceived.getData()));
@@ -124,7 +123,7 @@ public class Joueur {
                     trameSent = new Trame(this.seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_PASSEE, c.toInt());
                     multicast = false;
                     //startTimer();
-                    this.send(table.joueurTour);
+                    this.send(table.getJoueurTour());
                     if(this.main.size() == 3){
                         this.etat = State.JEU;
                     }

@@ -37,7 +37,7 @@ public class Table {
             vue.btnPiger.setText("Piger");
             vue.btnPiger.setDisable(true);
         });
-        System.out.println("" + this.joueurLocal.getJoueurNo() + " " + this.joueurBrasseur);
+        
         if(this.joueurLocal.getJoueurNo() == joueurBrasseur){
             this.brasserPaquet();
             this.joueurTour = this.joueurLocal.getJoueurNo();
@@ -64,10 +64,11 @@ public class Table {
     }
     
     public void nextJoueur(){
+        System.out.println(this.joueurTour);
         if(!jeuInverse){
-            joueurTour = (joueurTour+1)%this.getNbJoueurs();
+            joueurTour = (joueurTour+1)%this.joueurs.size();
         } else {
-            joueurTour = joueurTour - 1 < 0 ? this.getNbJoueurs() - 1 : joueurTour - 1;
+            joueurTour = joueurTour - 1 < 0 ? this.joueurs.size() - 1 : joueurTour - 1;
         }
         
         if(joueurs.get(joueurTour) == null){
