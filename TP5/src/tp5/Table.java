@@ -15,7 +15,7 @@ public class Table {
     public List<InetAddress> joueurs;
     public int points;
     public boolean jeuInverse = false;
-    private int joueursRestant;
+    public int joueursRestant;
     private TP5FX vue;
     
     public Table(TP5FX vue){
@@ -28,10 +28,10 @@ public class Table {
     }
     
     public void debuterJeu(){
-        this.joueursRestant = joueurs.size();
         vue.btnPiger.setText("Piger");
         vue.btnPiger.setDisable(true);
         if(this.joueurLocal.equals(joueurBrasseur)){
+            this.joueurLocal.debutJeu();
             this.brasserPaquet();
             this.joueurTour = this.joueurLocal.getJoueurNo();
             this.nextJoueur();

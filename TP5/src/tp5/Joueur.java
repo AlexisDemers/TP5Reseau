@@ -158,11 +158,6 @@ public class Joueur {
         this.setState(State.ASSIS);
         trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
         send();
-        if(this.isBrasseur()){
-            while(this.getMain().size() < 3){
-                this.jouer(null);
-            }
-        }
     }
     
     /*

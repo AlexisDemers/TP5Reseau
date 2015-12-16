@@ -106,9 +106,7 @@ public class TP5FX extends Application implements Initializable{
             table.joueurLocal.setState(State.ASSIS);
             table.joueurBrasseur = table.joueurLocal;
             table.debuterJeu();
-        }else {
-            
-        }
+        }  
     }
     
     @FXML
