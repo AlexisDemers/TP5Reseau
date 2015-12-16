@@ -70,7 +70,6 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_CARTE_JOUEE:
                 Carte carteJouee = new Carte(trameReceived.getData());
-                
                 table.points += carteJouee.getValeur();
                 if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
                     table.points = 99;
@@ -114,6 +113,12 @@ public class Joueur {
                 multicast = false;
                 send(trameReceived.getData());
                 break;
+            case Trame.MESSAGE_JOUEUR_PERDANT:
+                table.joueurs.remove(trameReceived.getData());
+                if(table.joueurs.size() == 1){
+                    this.gagner();
+                }
+                break;
         }
 
 
@@ -150,6 +155,9 @@ public class Joueur {
                     table.refreshCartes();
                     if(table.points > Table.MAX_POINTS){
                         this.perdre();
+                        trameSent = new Trame(this.seq[table.getJoueurTour()], Trame.MESSAGE_JOUEUR_PERDANT, this.joueurNo);
+                        multicast = true;
+                        send(0);
                     }
                 }
         }

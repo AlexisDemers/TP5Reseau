@@ -8,6 +8,7 @@ public class Trame {
     public static final int MESSAGE_BRASSEUR = 5;
     public static final int MESSAGE_JOUEUR_NO = 6;
     public static final int MESSAGE_DEMANDE_CARTE = 7;
+    public static final int MESSAGE_JOUEUR_PERDANT = 8;
     private int seq;
     private int type= -1;
     private int data;
