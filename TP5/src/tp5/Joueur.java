@@ -73,7 +73,8 @@ public class Joueur {
                 table.points += carteJouee.getValeur();
                 if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
                     table.points = 99;
-                } else if (carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
+                }
+                if(carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
                     table.inverserJeu();
                 } 
                 table.updatePointage();
@@ -86,13 +87,7 @@ public class Joueur {
                             table.joueurPerdu();
                         }
                     }
-                }
-                
-                if (table.getJoueurTour() == this.joueurNo){
-                    if(this.main.isEmpty() || !peutJouer()){
-                        this.perdre();
-                    }
-                }
+                }                
                 break;
             case Trame.MESSAGE_NEXT_JOUEUR:
                     table.nextJoueur();
