@@ -73,12 +73,12 @@ public class Joueur {
                 Carte carteJouee = new Carte(trameReceived.getData());
                 
                 table.points += carteJouee.getValeur();
-                table.updatePointage();
                 if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
                     table.points = 99;
                 } else if (carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
                     table.inverserJeu();
                 } 
+                table.updatePointage();
                 
                 table.carteJouee(carteJouee);
                 
@@ -144,13 +144,6 @@ public class Joueur {
                     send(0);
                 } else {
                     Carte carteJouee = main.remove(Integer.parseInt(sourceId));
-                    table.points += carteJouee.getValeur();
-                    if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
-                        table.points = 99;
-                    } else if (carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
-                        table.inverserJeu();
-                    }
-                    
                     trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_JOUEE, carteJouee.toInt());
                     multicast = true;
                     this.send(0);

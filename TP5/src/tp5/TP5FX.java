@@ -84,19 +84,19 @@ public class TP5FX extends Application implements Initializable{
         imgC3 = (ImageView) scene.lookup("#imgC3");
         
         imgC1.setOnMouseClicked((MouseEvent e)->{
-            if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour){
+            if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
                 jouerCarte(0);
                 imgC1.setImage(null);
             }
         });
         imgC2.setOnMouseClicked((MouseEvent e)->{
-            if(imgC2.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour){
+            if(imgC2.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
                 jouerCarte(1);
                 imgC2.setImage(null);
             }
         });
         imgC3.setOnMouseClicked((MouseEvent e)->{
-            if(imgC3.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour){
+            if(imgC3.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
                 jouerCarte(2);
                 imgC3.setImage(null);
             }
