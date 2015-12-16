@@ -31,6 +31,7 @@ public class Table {
     public void debuterJeu(){
         Platform.runLater(()->{vue.btnPiger.setText("Piger");});
         Platform.runLater(()->{vue.btnPiger.setDisable(true);});
+            System.out.println("ASFASD " + this.getNbJoueurs());
         if(this.joueurLocal.equals(joueurBrasseur)){
             this.joueurLocal.debutJeu();
             this.brasserPaquet();
