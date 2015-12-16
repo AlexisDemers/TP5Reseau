@@ -128,4 +128,8 @@ public class Table {
     public void carteJouee(Carte c){
         vue.imgDerniereCarte.setImage(new Image("/tp5/res/c" + c.toInt() + ".png"));
     }
+    
+    public void updatePointage(){
+        vue.lblPoints.setText(""+points);
+    }
 }

@@ -73,7 +73,7 @@ public class Joueur {
                 Carte carteJouee = new Carte(trameReceived.getData());
                 
                 table.points += carteJouee.getValeur();
-                
+                table.updatePointage();
                 if(carteJouee.getNombre() == ValeurCarte.ROI.getId()){
                     table.points = 99;
                 } else if (carteJouee.getNombre() == ValeurCarte.VALET.getId()) {
@@ -97,10 +97,8 @@ public class Joueur {
                 }
                 break;
             case Trame.MESSAGE_NEXT_JOUEUR:
-                table.nextJoueur();
-                    if(table.joueurTour == this.joueurNo){
-                        //TODO Attente jeu
-                    }
+                    table.nextJoueur();
+                    
                 break;
             case Trame.MESSAGE_BRASSEUR:
                     if(this.etat == State.IDLE && table.joueurBrasseur != this.joueurNo){
@@ -142,7 +140,7 @@ public class Joueur {
                     send(table.joueurBrasseur);
                 } else if(sourceId.equals("btnFinTour")){
                     trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_NEXT_JOUEUR, 0);
-                    multicast = true;
+                    multicast = true;   
                     send(0);
                 } else {
                     Carte carteJouee = main.remove(Integer.parseInt(sourceId));
