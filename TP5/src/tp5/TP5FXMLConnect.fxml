@@ -10,8 +10,8 @@
   <children>
     <TextField fx:id="txtJ1" layoutX="100.0" layoutY="46.0" prefWidth="200.0" text="172.20.33.41" />
     <TextField fx:id="txtJ2" layoutX="100.0" layoutY="98.0" prefWidth="200.0" text="172.20.33.40" />
-    <TextField fx:id="txtJ3" layoutX="100.0" layoutY="150.0" prefWidth="200.0" text="172.20.33.42"/>
-    <TextField fx:id="txtJ4" layoutX="100.0" layoutY="207.0" prefWidth="200.0" />
+    <TextField fx:id="txtJ3" layoutX="100.0" layoutY="150.0" prefWidth="200.0"/>
+    <TextField fx:id="txtJ4" layoutX="100.0" layoutY="207.0" prefWidth="200.0" text="172.20.33.42"/>
     <Button fx:id="btnConnect" layoutX="100.0" layoutY="256.0" mnemonicParsing="false" onAction="#onConnect" text="Débuter" />
     <Label layoutX="14.0" layoutY="49.0" text="Joueur 1" />
     <Label layoutX="14.0" layoutY="101.0" text="Joueur 2" />

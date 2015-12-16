@@ -212,12 +212,15 @@ public class Joueur {
         if(trameSent != null){
             if(multicast){
                 for(InetAddress i : table.joueurs){
-                    byte[] message = trameSent.toString().getBytes();
-                    DatagramPacket p = new DatagramPacket(message, message.length, i, SOCKET_PORT);
-                    try{
-                        socket.send(p);
-                    } catch(IOException e){}
+                    if(i != null){
+                        byte[] message = trameSent.toString().getBytes();
+                        DatagramPacket p = new DatagramPacket(message, message.length, i, SOCKET_PORT);
+                        try{
+                            socket.send(p);
+                        } catch(IOException e){}
+                    }
                 }
+            }
                 
             }else {
                 byte[] message = trameSent.toString().getBytes();
