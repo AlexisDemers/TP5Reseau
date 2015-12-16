@@ -108,13 +108,13 @@ public class Joueur {
                     }
                 break;
             case Trame.MESSAGE_BRASSEUR:
-                if(this.etat == State.ASSIS)
-                    this.debutJeu();
-                else if (this.etat == State.JEU)
-                {
-                    table.joueurTour = trameReceived.getData();
-                }
-                break;
+                    if(this.etat == State.ASSIS && table.joueurBrasseur.getJoueurNo() != this.joueurNo)
+                        this.debutJeu();
+                    else if (this.etat == State.JEU)
+                    {
+                        table.joueurTour = trameReceived.getData();
+                    }
+                    break;
         }
 
 
@@ -161,9 +161,11 @@ public class Joueur {
     
     public void debutJeu(){
         this.setState(State.ASSIS);
-        trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
-        multicast = true;
-        send();
+        if(table.joueurBrasseur.getJoueurNo() == this.joueurNo){
+            trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
+            multicast = true;
+            send();
+        }
         table.debuterJeu();
     }
     
