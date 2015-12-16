@@ -249,10 +249,12 @@ public class Joueur {
     
     public void perdre(){
         this.etat = State.PERDANT;
+        System.out.println("PERDANT");
     }
     
     public void gagner(){
         this.etat = State.GAGNANT;
+        System.out.println("GANGNANTNTN");
     }
     
     public int getJoueurNo(){
