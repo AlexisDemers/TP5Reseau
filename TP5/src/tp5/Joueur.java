@@ -55,12 +55,12 @@ public class Joueur {
         switch(trameReceived.getType()){
             case Trame.MESSAGE_CARTE_PASSEE:
                 main.add(new Carte(trameReceived.getData()));
+                table.recevoirCarte(new Carte(trameReceived.getData()));
                 switch(this.etat){
                     case ASSIS:
                         if(main.size() == 3){
                             etat = State.JEU;
                         }
-                        System.out.println(main.size());
                         break;
                     case JEU:
                         if(table.getNbJoueurs() == 1){
@@ -108,7 +108,12 @@ public class Joueur {
                     }
                 break;
             case Trame.MESSAGE_BRASSEUR:
-                table.debuterJeu();
+                if(this.etat == State.ASSIS)
+                    table.debuterJeu();
+                else if (this.etat == State.JEU)
+                {
+                    table.joueurTour = trameReceived.getData();
+                }
                 break;
         }
 
@@ -157,6 +162,12 @@ public class Joueur {
     public void debutJeu(){
         this.setState(State.ASSIS);
         trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
+        multicast = true;
+        send();
+    }
+    
+    public void setJoueurTour(int joueur){
+        trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, joueur);
         multicast = true;
         send();
     }

@@ -1,11 +1,13 @@
 package tp5;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.List;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 
 public class Table {
     public static final int MAX_POINTS = 99;
@@ -40,6 +42,7 @@ public class Table {
                 this.joueurLocal.jouer(null);
                 nextJoueur();
             }
+            this.joueurLocal.setJoueurTour(joueurTour);
         }
     }
     
@@ -79,6 +82,27 @@ public class Table {
     public void inverserJeu(){
         this.jeuInverse = !jeuInverse;
     }
-
-
+    
+    public void setJoueurTour(int joueur){
+        this.joueurTour = joueur;
+        if(joueur == joueurLocal.getJoueurNo()){
+            Platform.runLater(()->{
+                vue.imgC1.setDisable(false);
+                vue.imgC2.setDisable(false);
+                vue.imgC3.setDisable(false);
+            });
+        }
+    }
+    
+    public void recevoirCarte(Carte c){
+            Platform.runLater(()->{
+                File file = new File("../res/" + c.toInt() + ".png");
+                if(vue.imgC1.getImage() == null)
+                    vue.imgC1.setImage(new Image(file.toURI().toString()));
+                else if(vue.imgC2.getImage() == null)
+                    vue.imgC2.setImage(new Image(file.toURI().toString()));
+                else if(vue.imgC3.getImage() == null)
+                    vue.imgC3.setImage(new Image(file.toURI().toString()));
+            });
+    }
 }

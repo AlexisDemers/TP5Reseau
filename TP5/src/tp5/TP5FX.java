@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -37,6 +38,10 @@ public class TP5FX extends Application implements Initializable{
     @FXML TextField txtJ2;
     @FXML TextField txtJ3;
     @FXML TextField txtJ4;
+    @FXML ImageView imgDerniereCarte;
+    @FXML ImageView imgC1;
+    @FXML ImageView imgC2;
+    @FXML ImageView imgC3;
     @FXML Label lblPoints;
     
     private static Table table;

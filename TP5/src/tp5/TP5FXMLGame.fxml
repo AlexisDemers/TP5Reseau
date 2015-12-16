@@ -12,10 +12,10 @@
   <children>
     <Button fx:id="btnPiger" layoutX="295.0" layoutY="400.0" mnemonicParsing="false" onAction="#pigerCarte" text="Debuter" />
     <Button fx:id="btnFinTour" disable="true" layoutX="359.0" layoutY="400.0" mnemonicParsing="false" onAction="#finTour" text="Fin tour" />
-    <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="174.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="386.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="280.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="imgDerniereCarte" fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="174.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="imgC1" fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="386.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="imgC2" fitHeight="79.7500014992261" fitWidth="106.33332824707031" layoutX="280.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="imgC3" fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
     <Label layoutX="227.0" layoutY="175.0" prefHeight="21.0" text="Pointage:">
       <font>
         <Font size="20.0" fx:id="x1" />
