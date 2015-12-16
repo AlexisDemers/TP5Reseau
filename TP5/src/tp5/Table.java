@@ -33,16 +33,12 @@ public class Table {
         Platform.runLater(()->{vue.btnPiger.setDisable(true);});
             System.out.println("ASFASD " + this.getNbJoueurs());
         if(this.joueurLocal.equals(joueurBrasseur)){
-            this.joueurLocal.debutJeu();
             this.brasserPaquet();
             this.joueurTour = this.joueurLocal.getJoueurNo();
             this.nextJoueur();
             for(int j = 0; j < 3*this.getNbJoueurs(); j++){
                 this.joueurLocal.jouer(null);
                 nextJoueur();
-            }
-            
-            while(this.joueurLocal.getMain().size() < 3){
             }
         }
     }

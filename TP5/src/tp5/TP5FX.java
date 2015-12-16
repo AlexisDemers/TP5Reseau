@@ -105,7 +105,7 @@ public class TP5FX extends Application implements Initializable{
         if(btnPiger.getText().equals("Debuter")){
             table.joueurLocal.setState(State.ASSIS);
             table.joueurBrasseur = table.joueurLocal;
-            table.debuterJeu();
+            table.joueurLocal.debutJeu();
         }  
     }
     

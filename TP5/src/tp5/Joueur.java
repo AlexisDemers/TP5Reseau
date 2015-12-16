@@ -157,6 +157,7 @@ public class Joueur {
     public void debutJeu(){
         this.setState(State.ASSIS);
         trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
+        multicast = true;
         send();
     }
     
