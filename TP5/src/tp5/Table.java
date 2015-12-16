@@ -29,7 +29,15 @@ public class Table {
     }
     
     public Carte pigerCarte(){
-        return this.paquet.pigerCarte();
+        Carte retour;
+        try{
+            retour = this.paquet.pigerCarte();
+        } catch(IndexOutOfBoundsException e){
+            paquet = new Paquet();
+            paquet.brasserPaquer();
+            retour = this.paquet.pigerCarte();
+        }
+        return retour;
     }
     
     public void debuterJeu(){

@@ -167,7 +167,7 @@ public class TP5FX extends Application implements Initializable{
     public void perdre(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Jeu du 99");
-        alert.setContentText("Vous avez perdus!");
+        alert.setContentText("Vous avez perdu!");
         Optional<ButtonType> result = alert.showAndWait();
     }
     
