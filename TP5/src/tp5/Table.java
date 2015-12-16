@@ -70,9 +70,13 @@ public class Table {
             joueurTour = joueurTour - 1 < 0 ? this.getNbJoueurs() - 1 : joueurTour - 1;
         }
         
-        if(joueurTour == joueurLocal.getJoueurNo()){
-            tourJoue = false; 
-            Platform.runLater(()->vue.backgroundPane.setStyle("-fx-background-color: green"));
+        if(joueurs.get(joueurTour) == null){
+            nextJoueur();
+        } else {
+            if(joueurTour == joueurLocal.getJoueurNo()){
+                tourJoue = false; 
+                Platform.runLater(()->vue.backgroundPane.setStyle("-fx-background-color: green"));
+            }
         }
     }
     
