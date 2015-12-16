@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.List;
+import javafx.application.Platform;
 
 public class Table {
     public static final int MAX_POINTS = 99;
@@ -28,8 +29,8 @@ public class Table {
     }
     
     public void debuterJeu(){
-        vue.btnPiger.setText("Piger");
-        vue.btnPiger.setDisable(true);
+        Platform.runLater(()->{vue.btnPiger.setText("Piger");});
+        Platform.runLater(()->{vue.btnPiger.setDisable(true);});
         if(this.joueurLocal.equals(joueurBrasseur)){
             this.joueurLocal.debutJeu();
             this.brasserPaquet();
@@ -38,7 +39,6 @@ public class Table {
             for(int j = 0; j < 3*this.getNbJoueurs(); j++){
                 this.joueurLocal.jouer(null);
                 nextJoueur();
-                System.out.println("NOJ: " + this.getJoueurTour());
             }
             
             while(this.joueurLocal.getMain().size() < 3){
