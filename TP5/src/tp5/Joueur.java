@@ -108,16 +108,19 @@ public class Joueur {
                     }
                 break;
             case Trame.MESSAGE_BRASSEUR:
-                    if(this.etat == State.ASSIS && table.joueurBrasseur != this.joueurNo){
+                    if(this.etat == State.IDLE && table.joueurBrasseur != this.joueurNo){
                         System.out.println("ASDHASL:KDFJHAGHAD`FKJ ASD`K JAS`DLK AS`ASD`LFKNAS`FLK J!");
                         table.joueurBrasseur = trameReceived.getData();
                         this.debutJeu();
                     }
-                    else if (this.etat == State.JEU)
+                    else
                     {
                         table.joueurTour = trameReceived.getData();
                     }
                     break;
+            case Trame.MESSAGE_JOUEUR_NO:
+                table.setJoueurTour(trameReceived.getData());
+                break;
         }
 
 
@@ -173,7 +176,7 @@ public class Joueur {
     }
     
     public void setJoueurTour(int joueur){
-        trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, joueur);
+        trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_JOUEUR_NO, joueur);
         multicast = true;
         send();
     }

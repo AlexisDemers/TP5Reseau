@@ -38,7 +38,7 @@ public class Table {
                 vue.btnPiger.setText("Piger");
                 vue.btnPiger.setDisable(true);
             });
-            if(this.joueurLocal.equals(joueurBrasseur)){
+            if(this.joueurLocal.getJoueurNo() == joueurBrasseur){
                 this.brasserPaquet();
                 this.joueurTour = this.joueurLocal.getJoueurNo();
                 this.nextJoueur();
