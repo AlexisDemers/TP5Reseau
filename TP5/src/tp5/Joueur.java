@@ -63,7 +63,6 @@ public class Joueur {
                         }
                         break;
                     case JEU:
-                        main.add(new Carte(trameReceived.getData()));
                         break;
                    }
                    //this.incAck(table.getJoueurTour());
