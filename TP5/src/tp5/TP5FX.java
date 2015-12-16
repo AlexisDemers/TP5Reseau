@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -81,6 +82,16 @@ public class TP5FX extends Application implements Initializable{
         imgC2 = (ImageView) scene.lookup("#imgC2");
         imgC3 = (ImageView) scene.lookup("#imgC3");
         
+        imgC1.setOnMouseClicked((MouseEvent e)->{
+            jouerCarte(0);
+        });
+        imgC2.setOnMouseClicked((MouseEvent e)->{
+            jouerCarte(1);
+        });
+        imgC3.setOnMouseClicked((MouseEvent e)->{
+            jouerCarte(2);
+        });
+        
         imgDerniereCarte.setVisible(true);
         imgC1.setVisible(true);
         imgC2.setVisible(true);
@@ -130,11 +141,17 @@ public class TP5FX extends Application implements Initializable{
         table.debuterJeu();
     }
     
+    public void jouerCarte(int carteId){
+     System.out.println("JOERUERERER ! " + carteId + " : " + table.joueurLocal.getMain().get(carteId));   
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
+    
+    
     
 }

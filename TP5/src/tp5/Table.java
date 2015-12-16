@@ -90,13 +90,6 @@ public class Table {
     
     public void setJoueurTour(int joueur){
         this.joueurTour = joueur;
-        if(joueur == joueurLocal.getJoueurNo()){
-            Platform.runLater(()->{
-                //vue.imgC1.setDisable(false);
-                ///vue.imgC2.setDisable(false);
-                //vue.imgC3.setDisable(false);
-            });
-        }
     }
     
     public void recevoirCarte(Carte c){
