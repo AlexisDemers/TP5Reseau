@@ -87,22 +87,27 @@ public class Table {
         this.joueurTour = joueur;
         if(joueur == joueurLocal.getJoueurNo()){
             Platform.runLater(()->{
-                vue.imgC1.setDisable(false);
-                vue.imgC2.setDisable(false);
-                vue.imgC3.setDisable(false);
+                //vue.imgC1.setDisable(false);
+                ///vue.imgC2.setDisable(false);
+                //vue.imgC3.setDisable(false);
             });
         }
     }
     
     public void recevoirCarte(Carte c){
             Platform.runLater(()->{
-                File file = new File("../res/" + c.toInt() + ".png");
-                if(vue.imgC1.getImage() == null)
-                    vue.imgC1.setImage(new Image(file.toURI().toString()));
-                else if(vue.imgC2.getImage() == null)
-                    vue.imgC2.setImage(new Image(file.toURI().toString()));
-                else if(vue.imgC3.getImage() == null)
-                    vue.imgC3.setImage(new Image(file.toURI().toString()));
+                if(vue.imgC1.getImage() == null){
+                    vue.imgC1.setImage(new Image("/tp5/res/c" + c.toInt() + ".png"));
+                    vue.imgC1.setVisible(true);
+                }
+                else if(vue.imgC2.getImage() == null){
+                    vue.imgC2.setImage(new Image("/tp5/res/c" + c.toInt() + ".png"));
+                    vue.imgC2.setVisible(true);
+                }
+                else if(vue.imgC3.getImage() == null){
+                    vue.imgC3.setImage(new Image("/tp5/res/c" + c.toInt() + ".png"));
+                    vue.imgC3.setVisible(true);
+                }
             });
     }
 }

@@ -11,6 +11,7 @@ public class Trame {
     private int data;
     
     public Trame(String trameString){
+        System.out.println(trameString + " : " + trameString.charAt(0) + " : " + trameString.charAt(1)+ " : " + trameString.substring(2));
         trameString = trameString.trim();
         if(trameString.length()>=3){
             seq = Integer.parseInt(""+trameString.charAt(0));

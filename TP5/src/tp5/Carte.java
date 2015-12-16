@@ -8,7 +8,7 @@ public class Carte {
     private ValeurCarte valeur;
     
     public Carte(int sorte, int nombre) throws CarteInvalidException{
-        if(sorte <= 4 && sorte > 0 && nombre <= 13 && nombre > 0){
+        if(sorte < 4 && sorte >= 0 && nombre < 13 && nombre >= 0){
             this.sorte = sorte;
             this.nombre = nombre;
             this.valeur = ValeurCarte.values()[nombre];
@@ -19,11 +19,12 @@ public class Carte {
     }
     
     public Carte(int carte){
-        nombre = carte/Carte.NOMBRE_DE_SORTES;
-        sorte = (int) carte%Carte.NOMBRE_DE_NOMBRES;
+        sorte = (int)Math.floor(carte/Carte.NOMBRE_DE_NOMBRES);
+        nombre = carte%Carte.NOMBRE_DE_NOMBRES;
     }
     
     public int getValeur(){
+        System.out.println(this.valeur.getValeur() + " " + this.nombre);
         return valeur.getValeur();
     }
     
@@ -40,6 +41,6 @@ public class Carte {
     }
     
     public int toInt(){
-        return this.sorte*Carte.NOMBRE_DE_SORTES + this.nombre;
+        return this.sorte*Carte.NOMBRE_DE_NOMBRES + this.nombre;
     }
 }

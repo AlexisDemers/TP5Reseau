@@ -76,8 +76,18 @@ public class TP5FX extends Application implements Initializable{
         btnPiger = (Button) scene.lookup("#btnPiger");
         btnFinTour = (Button) scene.lookup("#btnFinTour");
         lblPoints = (Label) scene.lookup("#lblPoints");
+        imgDerniereCarte = (ImageView) scene.lookup("#imgDerniereCarte");
+        imgC1 = (ImageView) scene.lookup("#imgC1");
+        imgC2 = (ImageView) scene.lookup("#imgC2");
+        imgC3 = (ImageView) scene.lookup("#imgC3");
+        
+        imgDerniereCarte.setVisible(true);
+        imgC1.setVisible(true);
+        imgC2.setVisible(true);
+        imgC3.setVisible(true);
         
         stage.setScene(scene);
+        
         stage.show();
         
         ArrayList<InetAddress> list = new ArrayList<>();

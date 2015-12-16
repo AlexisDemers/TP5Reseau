@@ -51,7 +51,7 @@ public class Joueur {
     }
     
     public void onReceive(){
-                    System.out.println("in");
+                    System.out.println(trameReceived.getData());
         switch(trameReceived.getType()){
             case Trame.MESSAGE_CARTE_PASSEE:
                 main.add(new Carte(trameReceived.getData()));
@@ -235,7 +235,7 @@ public class Joueur {
              @Override
              public void run() {
                  while(table.getNbJoueurs() > 1){
-                     byte[] receiveData = new byte[3];
+                     byte[] receiveData = new byte[4];
                      try{
                         receivePacket = new DatagramPacket(receiveData, receiveData.length);
                         socket.receive(receivePacket);
