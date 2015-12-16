@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="715.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="tp5.TP5FX">
+<AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="521.0" prefWidth="715.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="tp5.TP5FX">
   <children>
     <Button fx:id="btnPiger" layoutX="295.0" layoutY="400.0" mnemonicParsing="false" onAction="#pigerCarte" text="Debuter" />
     <Button fx:id="btnFinTour" disable="true" layoutX="359.0" layoutY="400.0" mnemonicParsing="false" onAction="#finTour" text="Fin tour" />

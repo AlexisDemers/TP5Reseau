@@ -20,11 +20,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -45,6 +47,7 @@ public class TP5FX extends Application implements Initializable{
     @FXML ImageView imgC2;
     @FXML ImageView imgC3;
     @FXML Label lblPoints;
+    @FXML AnchorPane backgroundPane;
     
     private static Table table;
     
@@ -82,6 +85,9 @@ public class TP5FX extends Application implements Initializable{
         imgC1 = (ImageView) scene.lookup("#imgC1");
         imgC2 = (ImageView) scene.lookup("#imgC2");
         imgC3 = (ImageView) scene.lookup("#imgC3");
+        backgroundPane = (AnchorPane) scene.lookup("#backgroundPane");
+        Canvas canvas = new Canvas(backgroundPane.getWidth(),  backgroundPane.getHeight());
+        backgroundPane.getChildren().add(canvas);
         
         imgC1.setOnMouseClicked((MouseEvent e)->{
             if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
@@ -153,6 +159,7 @@ public class TP5FX extends Application implements Initializable{
         btnFinTour.setDisable(true);
         btnPiger.setDisable(true);
         table.joueurLocal.jouer("btnFinTour");
+        backgroundPane.setStyle("-fx-background-color: white");
     }
     
     public void jouerCarte(int carteId){

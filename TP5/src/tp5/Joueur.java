@@ -91,9 +91,6 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_NEXT_JOUEUR:
                     table.nextJoueur();
-                    if(table.joueurTour == this.joueurNo){
-                        table.tourJoue = false;
-                    }
                 break;
             case Trame.MESSAGE_BRASSEUR:
                     table.joueurBrasseur = trameReceived.getData();
@@ -110,7 +107,7 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_JOUEUR_PERDANT:
                 table.joueurs.remove(trameReceived.getData());
-                if(table.joueurs.size() == 1){
+                if(trameReceived.getData() != this.joueurNo && table.joueurs.size() == 1){
                     this.gagner();
                 }
                 break;
