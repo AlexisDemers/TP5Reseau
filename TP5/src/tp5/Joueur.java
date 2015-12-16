@@ -269,7 +269,7 @@ public class Joueur {
     }
     
     public boolean isBrasseur(){
-        return this.joueurNo == 0;
+        return this.joueurNo == table.joueurBrasseur;
     }
     
     public boolean peutJouer(){
