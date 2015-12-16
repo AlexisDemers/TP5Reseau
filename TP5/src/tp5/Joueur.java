@@ -131,7 +131,7 @@ public class Joueur {
                 break;
             case JEU:
                 if(sourceId.equals("btnPiger")){
-                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_CARTE_JOUEE, 0);
+                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_DEMANDE_CARTE, 0);
                     multicast = false;
                     send(table.joueurBrasseur);
                 } else if(sourceId.equals("btnFinTour")){
