@@ -110,6 +110,11 @@ public class Joueur {
             case Trame.MESSAGE_JOUEUR_NO:
                 table.setJoueurTour(trameReceived.getData());
                 break;
+            case Trame.MESSAGE_DEMANDE_CARTE:
+                trameSent = new Trame(this.seq[trameReceived.getData()], Trame.MESSAGE_CARTE_PASSEE, table.pigerCarte().toInt());
+                multicast = false;
+                send(trameReceived.getData());
+                break;
         }
 
 
@@ -131,7 +136,7 @@ public class Joueur {
                 break;
             case JEU:
                 if(sourceId.equals("btnPiger")){
-                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_DEMANDE_CARTE, 0);
+                    trameSent = new Trame(seq[table.joueurBrasseur], Trame.MESSAGE_DEMANDE_CARTE, this.joueurNo);
                     multicast = false;
                     send(table.joueurBrasseur);
                 } else if(sourceId.equals("btnFinTour")){
