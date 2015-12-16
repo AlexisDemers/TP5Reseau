@@ -77,7 +77,13 @@ public class Table {
     }
     
     public int getNbJoueurs(){
-        return joueurs.size();
+        int returnValue = 0;
+        for(InetAddress i : joueurs){
+            if(i != null){
+                returnValue++;
+            }
+        }
+        return returnValue;
     }
     
     public int joueursRestant(){

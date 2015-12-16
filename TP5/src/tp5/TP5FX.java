@@ -118,22 +118,14 @@ public class TP5FX extends Application implements Initializable{
         
         ArrayList<InetAddress> list = new ArrayList<>();
         try{
-            if(!txtJ1.getText().equals("")){
-                list.add(0, InetAddress.getByName(txtJ1.getText()));
-            }
-            if(!txtJ2.getText().equals("")){
-                list.add(1, InetAddress.getByName(txtJ2.getText()));
-            }
-            if(!txtJ3.getText().equals("")){
-                list.add(2, InetAddress.getByName(txtJ3.getText()));
-            }
-            if(!txtJ4.getText().equals("")){
-                list.add(3, InetAddress.getByName(txtJ4.getText()));
-            }
+            list.add(0, txtJ1.getText().equals("") ? null : InetAddress.getByName(txtJ1.getText()));
+            list.add(1, txtJ2.getText().equals("") ? null : InetAddress.getByName(txtJ2.getText()));
+            list.add(2, txtJ3.getText().equals("") ? null : InetAddress.getByName(txtJ3.getText()));
+            list.add(3, txtJ4.getText().equals("") ? null : InetAddress.getByName(txtJ4.getText()));
             table = new Table(this);
             table.joueurs = list;
             for (int i = 0; i < table.joueurs.size(); i++) {
-                if (table.joueurs.get(i).getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())) {
+                if (table.joueurs.get(i) != null && table.joueurs.get(i).getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())) {
                     table.joueurLocal = new Joueur(i, table);
                 }
             }

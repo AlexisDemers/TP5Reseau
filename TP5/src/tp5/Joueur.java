@@ -106,8 +106,8 @@ public class Joueur {
                 send(trameReceived.getData());
                 break;
             case Trame.MESSAGE_JOUEUR_PERDANT:
-                table.joueurs.remove(trameReceived.getData());
-                if(trameReceived.getData() != this.joueurNo && table.joueurs.size() == 1){
+                table.joueurs.set(trameReceived.getData(), null);
+                if(trameReceived.getData() != this.joueurNo && table.getNbJoueurs() == 1){
                     this.gagner();
                 }
                 break;
@@ -153,7 +153,6 @@ public class Joueur {
                     multicast = true;
                     this.send(0);
                     table.refreshCartes();
-                    
                 }
         }
     }
