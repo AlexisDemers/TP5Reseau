@@ -16,7 +16,7 @@ public class Table {
     private Paquet paquet;
     public int joueurBrasseur;
     public int joueurTour;
-    public SynchronizedArrayList<InetAddress> joueurs;
+    public ArrayList<InetAddress> joueurs;
     public int points;
     public boolean jeuInverse = false;
     public int joueursRestant;
