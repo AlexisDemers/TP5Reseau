@@ -51,7 +51,7 @@ public class Joueur {
     }
     
     public void onReceive(){
-                    System.out.println(trameReceived.getData());
+                    System.out.println(trameReceived.toString());
         switch(trameReceived.getType()){
             case Trame.MESSAGE_CARTE_PASSEE:
                 main.add(new Carte(trameReceived.getData()));
@@ -126,7 +126,6 @@ public class Joueur {
                 if(this.isBrasseur()){
                     Carte c = table.pigerCarte();
                     trameSent = new Trame(this.seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_PASSEE, c.toInt());
-                        System.out.println(trameSent.toString());
                     multicast = false;
                     //startTimer();
                     this.send(table.joueurTour);
