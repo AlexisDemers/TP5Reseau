@@ -33,6 +33,8 @@ public class Table {
         vue.btnPiger.setDisable(true);
         if(this.joueurLocal.equals(joueurBrasseur)){
             this.brasserPaquet();
+            this.joueurTour = this.joueurLocal.getJoueurNo();
+            this.nextJoueur();
             while(this.joueurLocal.getMain().size() < 3){
                 this.joueurLocal.jouer(null);
             }
