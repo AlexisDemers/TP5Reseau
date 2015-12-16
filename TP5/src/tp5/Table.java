@@ -148,4 +148,12 @@ public class Table {
     public void updatePointage(){
         Platform.runLater(()->vue.lblPoints.setText(""+points));
     }
+    
+    public void perdre(){
+        vue.perdre();
+    }
+    
+    public void gagner(){
+        vue.gagner();
+    }
 }

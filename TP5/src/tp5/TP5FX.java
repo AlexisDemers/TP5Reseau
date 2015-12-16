@@ -10,6 +10,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,7 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -159,6 +162,21 @@ public class TP5FX extends Application implements Initializable{
             btnPiger.setDisable(false);
             btnFinTour.setDisable(false);
         }
+    }
+    
+    public void perdre(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Jeu du 99");
+        alert.setContentText("Vous avez perdus!");
+        Optional<ButtonType> result = alert.showAndWait();
+    }
+    
+    public void gagner(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Jeu du 99");
+        alert.setContentText("Vous avez gagné!");
+        Optional<ButtonType> result = alert.showAndWait();
+        System.exit(0);
     }
     
     /**

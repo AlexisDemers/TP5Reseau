@@ -82,7 +82,7 @@ public class Joueur {
                 
                 if(table.points > Table.MAX_POINTS){
                     for(InetAddress i : table.joueurs){
-                        if(i.equals(IPAddress)){
+                        if(i != null && i.equals(IPAddress)){
                             table.joueurPerdu();
                         }
                     }
@@ -250,12 +250,12 @@ public class Joueur {
     
     public void perdre(){
         this.etat = State.PERDANT;
-        System.out.println("PERDANT");
+        table.perdre();
     }
     
     public void gagner(){
         this.etat = State.GAGNANT;
-        System.out.println("GANGNANTNTN");
+        table.gagner();
     }
     
     public int getJoueurNo(){
