@@ -98,7 +98,9 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_NEXT_JOUEUR:
                     table.nextJoueur();
-                    
+                    if(table.joueurTour == this.joueurNo){
+                        table.tourJoue = false;
+                    }
                 break;
             case Trame.MESSAGE_BRASSEUR:
                     if(this.etat == State.IDLE && table.joueurBrasseur != this.joueurNo){

@@ -83,6 +83,10 @@ public class TP5FX extends Application implements Initializable{
         imgC2 = (ImageView) scene.lookup("#imgC2");
         imgC3 = (ImageView) scene.lookup("#imgC3");
         
+        btnPiger.setOnMouseClicked((MouseEvent e)->{
+            pigerCarte();
+        });
+        
         imgC1.setOnMouseClicked((MouseEvent e)->{
             if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
                 jouerCarte(0);
