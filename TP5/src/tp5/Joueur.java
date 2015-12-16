@@ -104,7 +104,8 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_BRASSEUR:
                     table.joueurBrasseur = trameReceived.getData();
-                    this.debutJeu();
+                    this.setState(State.ASSIS);
+                    table.debuterJeu();
                     break;
             case Trame.MESSAGE_JOUEUR_NO:
                 table.setJoueurTour(trameReceived.getData());
@@ -151,13 +152,11 @@ public class Joueur {
     }
     
     public void debutJeu(){
-        this.setState(State.ASSIS);
         if(table.joueurBrasseur == this.joueurNo){
             trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, this.joueurNo);
             multicast = true;
             send(0);
-        }
-        table.debuterJeu();
+        } 
     }
     
     public void setJoueurTour(int joueur){
