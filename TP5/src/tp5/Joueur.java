@@ -220,8 +220,6 @@ public class Joueur {
                         } catch(IOException e){}
                     }
                 }
-            }
-                
             }else {
                 byte[] message = trameSent.toString().getBytes();
                 DatagramPacket p = new DatagramPacket(message, message.length, table.joueurs.get(joueur), SOCKET_PORT);
