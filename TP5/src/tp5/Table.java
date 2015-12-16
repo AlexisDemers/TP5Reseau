@@ -35,8 +35,13 @@ public class Table {
             this.brasserPaquet();
             this.joueurTour = this.joueurLocal.getJoueurNo();
             this.nextJoueur();
+            for(int j = 0; j < 3; j++){
+                for(int i = 0; i < this.getNbJoueurs(); i++){
+                    this.joueurLocal.jouer(null);
+                }
+            }
+            
             while(this.joueurLocal.getMain().size() < 3){
-                this.joueurLocal.jouer(null);
             }
         }
     }

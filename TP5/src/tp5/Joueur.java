@@ -75,8 +75,8 @@ public class Joueur {
                         }
                         break;
                    }
-                   this.incAck(table.getJoueurTour());
-                   trameSent = new Trame(this.ack[table.getJoueurTour()], Trame.MESSAGE_CONFIRMATION, 0);
+                   //this.incAck(table.getJoueurTour());
+                   //trameSent = new Trame(this.ack[table.getJoueurTour()], Trame.MESSAGE_CONFIRMATION, 0);
                 break;
             case Trame.MESSAGE_CARTE_JOUEE:
                 Carte carteJouee = new Carte(trameReceived.getData());
@@ -127,14 +127,6 @@ public class Joueur {
                     awaitPacket = true;
                     //startTimer();
                     this.send();
-                    byte[] receiveData = new byte[3];
-                    receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                    do {
-                        try{
-                            socket.receive(receivePacket);
-                            trameReceived = new Trame(new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength()));
-                        } catch(IOException e){}
-                    } while(trameReceived.getSeq() == ack[table.getJoueurTour()]);
                     table.nextJoueur();
                     if(this.main.size() == 3){
                         this.etat = State.JEU;
@@ -180,7 +172,7 @@ public class Joueur {
     * Starts the timer to repeatedly send the trameSent object
     * to secure that the packet was properly received
     */
-    private void startTimer(){
+    /*private void startTimer(){
         timer = Executors.newSingleThreadScheduledExecutor();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -190,14 +182,14 @@ public class Joueur {
                 }catch(Exception e){}
             }
         }, 1, 1, TimeUnit.SECONDS);
-    }
+    }*/
     
     /*
     * Shutsdown the timer
     */
-    private void stopTimer(){
+    /*private void stopTimer(){
        timer.shutdown();
-    }
+    }*/
     
     /*
     * Switches between 0 and 1 for the sequence number
