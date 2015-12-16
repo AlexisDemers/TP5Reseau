@@ -21,7 +21,6 @@ public class Table {
     public boolean jeuInverse = false;
     public int joueursRestant;
     private TP5FX vue;
-    private boolean partieCommencee = false;
     public boolean tourJoue = false;
     
     public Table(TP5FX vue){
@@ -34,22 +33,20 @@ public class Table {
     }
     
     public void debuterJeu(){
-        if(!partieCommencee){
-            partieCommencee = true;
-            Platform.runLater(()->{
-                vue.btnPiger.setText("Piger");
-                vue.btnPiger.setDisable(true);
-            });
-            if(this.joueurLocal.getJoueurNo() == joueurBrasseur){
-                this.brasserPaquet();
-                this.joueurTour = this.joueurLocal.getJoueurNo();
-                this.nextJoueur();
-                for(int j = 0; j < 3*this.getNbJoueurs(); j++){
-                    this.joueurLocal.jouer(null);
-                    nextJoueur();
-                }
-                this.joueurLocal.setJoueurTour(joueurTour);
+        Platform.runLater(()->{
+            vue.btnPiger.setText("Piger");
+            vue.btnPiger.setDisable(true);
+        });
+        System.out.println("" + this.joueurLocal.getJoueurNo() + " " + this.joueurBrasseur);
+        if(this.joueurLocal.getJoueurNo() == joueurBrasseur){
+            this.brasserPaquet();
+            this.joueurTour = this.joueurLocal.getJoueurNo();
+            this.nextJoueur();
+            for(int j = 0; j < 3*this.getNbJoueurs(); j++){
+                this.joueurLocal.jouer(null);
+                nextJoueur();
             }
+            this.joueurLocal.setJoueurTour(joueurTour);
         }
     }
     
@@ -98,7 +95,10 @@ public class Table {
     public void setJoueurTour(int joueur){
         this.joueurTour = joueur;
         if(joueur == joueurLocal.getJoueurNo()){
-            this.tourJoue = false;
+            tourJoue = false; 
+            vue.backgroundPane.setStyle("-fx-background-color: green");
+        } else {
+            vue.backgroundPane.setStyle("-fx-background-color: white");
         }
     }
     

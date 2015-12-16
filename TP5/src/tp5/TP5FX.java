@@ -86,8 +86,7 @@ public class TP5FX extends Application implements Initializable{
         imgC2 = (ImageView) scene.lookup("#imgC2");
         imgC3 = (ImageView) scene.lookup("#imgC3");
         backgroundPane = (AnchorPane) scene.lookup("#backgroundPane");
-        Canvas canvas = new Canvas(backgroundPane.getWidth(),  backgroundPane.getHeight());
-        backgroundPane.getChildren().add(canvas);
+        backgroundPane.getChildren().add(new Canvas(backgroundPane.getWidth(),  backgroundPane.getHeight()));
         
         imgC1.setOnMouseClicked((MouseEvent e)->{
             if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
