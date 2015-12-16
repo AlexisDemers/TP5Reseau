@@ -16,7 +16,7 @@ public class Table {
     private Paquet paquet;
     public int joueurBrasseur;
     public int joueurTour;
-    public List<InetAddress> joueurs;
+    public SynchronizedArrayList<InetAddress> joueurs;
     public int points;
     public boolean jeuInverse = false;
     public int joueursRestant;
@@ -72,7 +72,7 @@ public class Table {
         
         if(joueurTour == joueurLocal.getJoueurNo()){
             tourJoue = false; 
-            vue.backgroundPane.setStyle("-fx-background-color: green");
+            Platform.runLater(()->vue.backgroundPane.setStyle("-fx-background-color: green"));
         }
     }
     
@@ -96,9 +96,9 @@ public class Table {
         this.joueurTour = joueur;
         if(joueur == joueurLocal.getJoueurNo()){
             tourJoue = false; 
-            vue.backgroundPane.setStyle("-fx-background-color: green");
+            Platform.runLater(()->vue.backgroundPane.setStyle("-fx-background-color: green"));
         } else {
-            vue.backgroundPane.setStyle("-fx-background-color: white");
+            Platform.runLater(()->vue.backgroundPane.setStyle("-fx-background-color: white"));
         }
     }
     
