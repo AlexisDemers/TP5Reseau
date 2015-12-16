@@ -29,7 +29,6 @@ public class Joueur {
     public int[] seq = new int[4];
     public int[] ack = new int[4];
     public boolean multicast = false;
-    public boolean awaitPacket = false;
     
     public Joueur(int joueurNo, Table table){
         this.joueurNo = joueurNo;
@@ -124,7 +123,6 @@ public class Joueur {
                     trameSent = new Trame(this.seq[table.getJoueurTour()], Trame.MESSAGE_CARTE_PASSEE, c.toInt());
                         System.out.println(trameSent.toString());
                     multicast = false;
-                    awaitPacket = true;
                     //startTimer();
                     this.send();
                     table.nextJoueur();
@@ -233,13 +231,11 @@ public class Joueur {
                  while(table.getNbJoueurs() > 1){
                      byte[] receiveData = new byte[3];
                      try{
-                         receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                         socket.receive(receivePacket);
-                         if(!awaitPacket){
-                            trameReceived = new Trame(new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength()));
-                            IPAddress = receivePacket.getAddress();
-                            onReceive();
-                         }
+                        receivePacket = new DatagramPacket(receiveData, receiveData.length);
+                        socket.receive(receivePacket);
+                        trameReceived = new Trame(new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength()));
+                        IPAddress = receivePacket.getAddress();
+                        onReceive();
                      } catch(IOException e){}
                      //TODO afficher gagnant
                  }
