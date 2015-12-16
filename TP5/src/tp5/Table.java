@@ -150,10 +150,11 @@ public class Table {
     }
     
     public void perdre(){
-        vue.perdre();
+        Platform.runLater(()->vue.perdre());
+        
     }
     
     public void gagner(){
-        vue.gagner();
+        Platform.runLater(()->vue.gagner());
     }
 }
