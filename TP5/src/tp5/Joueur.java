@@ -103,14 +103,8 @@ public class Joueur {
                     }
                 break;
             case Trame.MESSAGE_BRASSEUR:
-                    if(this.etat == State.IDLE && table.joueurBrasseur != this.joueurNo){
-                        table.joueurBrasseur = trameReceived.getData();
-                        this.debutJeu();
-                    }
-                    else
-                    {
-                        table.joueurTour = trameReceived.getData();
-                    }
+                    table.joueurBrasseur = trameReceived.getData();
+                    this.debutJeu();
                     break;
             case Trame.MESSAGE_JOUEUR_NO:
                 table.setJoueurTour(trameReceived.getData());

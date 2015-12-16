@@ -83,10 +83,6 @@ public class TP5FX extends Application implements Initializable{
         imgC2 = (ImageView) scene.lookup("#imgC2");
         imgC3 = (ImageView) scene.lookup("#imgC3");
         
-        btnPiger.setOnMouseClicked((MouseEvent e)->{
-            pigerCarte();
-        });
-        
         imgC1.setOnMouseClicked((MouseEvent e)->{
             if(imgC1.getImage() != null && table.joueurLocal.getJoueurNo() == table.joueurTour && !table.tourJoue){
                 jouerCarte(0);
@@ -146,7 +142,10 @@ public class TP5FX extends Application implements Initializable{
             table.joueurLocal.setState(State.ASSIS);
             table.joueurBrasseur = table.joueurLocal.getJoueurNo();
             table.joueurLocal.debutJeu();
-        }  
+        } else {
+            btnPiger.setDisable(true);
+            table.joueurLocal.jouer("btnPiger");
+        }
     }
     
     @FXML
@@ -154,12 +153,6 @@ public class TP5FX extends Application implements Initializable{
         btnFinTour.setDisable(true);
         btnPiger.setDisable(true);
         table.joueurLocal.jouer("btnFinTour");
-    }
-    
-    @FXML
-    private void piger(){
-        btnPiger.setDisable(true);
-        table.joueurLocal.jouer("btnPiger");
     }
     
     public void jouerCarte(int carteId){
