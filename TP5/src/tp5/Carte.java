@@ -21,6 +21,7 @@ public class Carte {
     public Carte(int carte){
         sorte = (int)Math.floor(carte/Carte.NOMBRE_DE_NOMBRES);
         nombre = carte%Carte.NOMBRE_DE_NOMBRES;
+        this.valeur = ValeurCarte.values()[nombre];
     }
     
     public int getValeur(){
