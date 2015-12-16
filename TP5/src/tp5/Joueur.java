@@ -109,7 +109,7 @@ public class Joueur {
                 break;
             case Trame.MESSAGE_BRASSEUR:
                 if(this.etat == State.ASSIS)
-                    table.debuterJeu();
+                    this.debutJeu();
                 else if (this.etat == State.JEU)
                 {
                     table.joueurTour = trameReceived.getData();
@@ -164,6 +164,7 @@ public class Joueur {
         trameSent = new Trame(seq[table.getJoueurTour()], Trame.MESSAGE_BRASSEUR, 1);
         multicast = true;
         send();
+        table.debuterJeu();
     }
     
     public void setJoueurTour(int joueur){

@@ -20,6 +20,7 @@ public class Table {
     public boolean jeuInverse = false;
     public int joueursRestant;
     private TP5FX vue;
+    private boolean partieCommencee = false;
     
     public Table(TP5FX vue){
         this.vue = vue;
@@ -31,18 +32,22 @@ public class Table {
     }
     
     public void debuterJeu(){
-        Platform.runLater(()->{vue.btnPiger.setText("Piger");});
-        Platform.runLater(()->{vue.btnPiger.setDisable(true);});
-            System.out.println("ASFASD " + this.getNbJoueurs());
-        if(this.joueurLocal.equals(joueurBrasseur)){
-            this.brasserPaquet();
-            this.joueurTour = this.joueurLocal.getJoueurNo();
-            this.nextJoueur();
-            for(int j = 0; j < 3*this.getNbJoueurs(); j++){
-                this.joueurLocal.jouer(null);
-                nextJoueur();
+        if(!partieCommencee){
+            partieCommencee = true;
+            Platform.runLater(()->{
+                vue.btnPiger.setText("Piger");
+                vue.btnPiger.setDisable(true);
+            });
+            if(this.joueurLocal.equals(joueurBrasseur)){
+                this.brasserPaquet();
+                this.joueurTour = this.joueurLocal.getJoueurNo();
+                this.nextJoueur();
+                for(int j = 0; j < 3*this.getNbJoueurs(); j++){
+                    this.joueurLocal.jouer(null);
+                    nextJoueur();
+                }
+                this.joueurLocal.setJoueurTour(joueurTour);
             }
-            this.joueurLocal.setJoueurTour(joueurTour);
         }
     }
     
